@@ -1,6 +1,6 @@
 # Homebrew formula template.
 #
-# `0.4.0` and the `@SHA256_*@` placeholders are substituted by
+# `0.5.0` and the `@SHA256_*@` placeholders are substituted by
 # .github/workflows/homebrew.yml from the published release assets, and the
 # result is pushed to noirbizarre/homebrew-tap as Formula/git-wipe.rb.
 #
@@ -9,7 +9,7 @@
 class GitWipe < Formula
   desc "Wipe out merged local branches and worktrees"
   homepage "https://github.com/noirbizarre/git-wipe"
-  version "0.4.0"
+  version "0.5.0"
   license "MIT"
 
   # Prebuilt binaries from the GitHub release rather than a source build: the
@@ -18,11 +18,11 @@ class GitWipe < Formula
   on_macos do
     on_arm do
       url "https://github.com/noirbizarre/git-wipe/releases/download/v#{version}/git-wipe-aarch64-apple-darwin.tar.gz"
-      sha256 "c1d5352a7ef44bfc0970e39530053983d7cfa190910b07ae4243a317ebf2c704"
+      sha256 "10fb5bc196624368dff93ed05eb4de952ea61b77db600462cb3905621a4084b3"
     end
     on_intel do
       url "https://github.com/noirbizarre/git-wipe/releases/download/v#{version}/git-wipe-x86_64-apple-darwin.tar.gz"
-      sha256 "7f71dfbe64ff314377277954c516026250ac5c89b5ce629d7e8dc4157232cbb1"
+      sha256 "1012901164cb93405aeb9816377d902c5e0aa7a6a872fb5ac7ef39e852801ae0"
     end
   end
 
@@ -31,11 +31,11 @@ class GitWipe < Formula
   on_linux do
     on_arm do
       url "https://github.com/noirbizarre/git-wipe/releases/download/v#{version}/git-wipe-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "cc3eeff89fe7deb78f57bb29bda9ad6acba5b8f91327bc3d8812c9999a78f346"
+      sha256 "c2004d8e404efd3872e724986bc1dac28e1192562a4cf2d3404ef7f4c64b8a64"
     end
     on_intel do
       url "https://github.com/noirbizarre/git-wipe/releases/download/v#{version}/git-wipe-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "5e8c266e1c48863ec720b0f9c82456351c0d5091103fd657bc719d2bfee1db26"
+      sha256 "8022d9784edf0a2a05a578a6b9e8b661a04ce9ae55088c2b43608bec268c50f4"
     end
   end
 
