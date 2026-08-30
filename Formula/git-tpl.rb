@@ -1,6 +1,6 @@
 # Homebrew formula template.
 #
-# `0.11.0` and the `@SHA256_*@` placeholders are substituted by
+# `0.12.0` and the `@SHA256_*@` placeholders are substituted by
 # .github/workflows/homebrew.yaml from the published release assets, and the
 # result is pushed to noirbizarre/homebrew-tap as Formula/git-tpl.rb.
 #
@@ -9,7 +9,7 @@
 class GitTpl < Formula
   desc "Git-native project templates"
   homepage "https://noirbizarre.github.io/git-tpl/"
-  version "0.11.0"
+  version "0.12.0"
   license "MIT"
 
   # Prebuilt binaries from the GitHub release rather than a source build:
@@ -20,11 +20,11 @@ class GitTpl < Formula
   on_macos do
     on_arm do
       url "https://github.com/noirbizarre/git-tpl/releases/download/#{version}/git-tpl_#{version}_darwin-arm64.tar.gz"
-      sha256 "0588f1afc7fbf23a80426ee73e4228314eeb1e1ee90e536c5f54ecb81a079247"
+      sha256 "78beb1bf59e28b74ace7a0acabfacb0a0eebdb36fb0571a96361e6e1147ea441"
     end
     on_intel do
       url "https://github.com/noirbizarre/git-tpl/releases/download/#{version}/git-tpl_#{version}_darwin-amd64.tar.gz"
-      sha256 "0723dfd816b21c2a909cf1474b1e01231442f5b143fa65b54752a01f1cf75241"
+      sha256 "b034b35a0d833fe84838d2eaf0748a1642272d3383e7ab331453feb67f986d09"
     end
   end
 
@@ -35,7 +35,7 @@ class GitTpl < Formula
   on_linux do
     on_intel do
       url "https://github.com/noirbizarre/git-tpl/releases/download/#{version}/git-tpl_#{version}_linux-amd64-musl.tar.gz"
-      sha256 "280707ccf67e5fe6d6989b80031b3fcc8f472605984a7a78083e97b5374cc1e4"
+      sha256 "921313498c13f8ad298178e264aaec108de48ba59187f1ed91d04482132cc6fc"
     end
   end
 
