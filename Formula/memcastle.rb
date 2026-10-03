@@ -1,12 +1,12 @@
 # Homebrew formula template.
 #
-# `0.1.0` and the `@SHA256_*@` placeholders are substituted by
+# `0.2.0` and the `@SHA256_*@` placeholders are substituted by
 # .github/workflows/homebrew.yaml from the published release assets, and the
 # result is pushed to noirbizarre/homebrew-tap as Formula/memcastle.rb.
 class Memcastle < Formula
   desc "Local-first, always-on memory server for AI coding agents over MCP/HTTP"
   homepage "https://github.com/noirbizarre/memcastle"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
 
   # The release asset is the raw executable itself, not an archive — this
@@ -18,11 +18,11 @@ class Memcastle < Formula
   on_macos do
     on_arm do
       url "https://github.com/noirbizarre/memcastle/releases/download/#{version}/memcastle_#{version}_darwin-arm64"
-      sha256 "302dace383ab0fd76e1ff25ab6b556d63f6ecf941e05097093f69eeb3e9c760a"
+      sha256 "44d137cb1fc90d81480e4eaed1f126815975162189bbbf6d879098ba23761c30"
     end
     on_intel do
       url "https://github.com/noirbizarre/memcastle/releases/download/#{version}/memcastle_#{version}_darwin-amd64"
-      sha256 "17a0428900bda1149e23d20245601ced865d7c8d18c68318e33d3a343233953a"
+      sha256 "d852b398a9dbf46946efa7dd715ea38ddfd4a2ba5de182eb652119b34ebbe7ad"
     end
   end
 
@@ -31,6 +31,10 @@ class Memcastle < Formula
     # the way in because the downloaded asset's name carries the platform
     # suffix, not the command users are meant to type.
     bin.install Dir["*"].first => "memcastle"
+
+    # Generated from the installed binary, so the scripts always match its
+    # commands and flags; `memcastle completions <shell>` needs no daemon.
+    generate_completions_from_executable(bin/"memcastle", "completions", shells: [:bash, :zsh, :fish])
   end
 
   test do
