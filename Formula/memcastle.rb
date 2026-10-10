@@ -1,12 +1,12 @@
 # Homebrew formula template.
 #
-# `0.4.0` and the `@SHA256_*@` placeholders are substituted by
+# `0.4.1` and the `@SHA256_*@` placeholders are substituted by
 # .github/workflows/homebrew.yaml from the published release assets, and the
 # result is pushed to noirbizarre/homebrew-tap as Formula/memcastle.rb.
 class Memcastle < Formula
   desc "Local-first, always-on memory server for AI coding agents over MCP/HTTP"
-  homepage "https://github.com/noirbizarre/memcastle"
-  version "0.4.0"
+  homepage "https://github.com/memcastle/memcastle"
+  version "0.4.1"
   license "MIT"
 
   # The release asset is the raw executable itself, not an archive — this
@@ -17,34 +17,34 @@ class Memcastle < Formula
   # This project tags without a `v` prefix, so the tag is `#{version}` as-is.
   on_macos do
     on_arm do
-      url "https://github.com/noirbizarre/memcastle/releases/download/#{version}/memcastle_#{version}_darwin-arm64"
-      sha256 "e933dfb26afe50ee71ba6ddc3e235e1a398bf15bd4da530778745caacb598136"
+      url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_darwin-arm64"
+      sha256 "8afd67a2543bc11d85257b7a9b5124486bf7c637e220189f46f3f942db8e68bd"
     end
     on_intel do
-      url "https://github.com/noirbizarre/memcastle/releases/download/#{version}/memcastle_#{version}_darwin-amd64"
-      sha256 "95daffc3bb56648d954131597bf3ce2d0622db435fc663625724e0c63538f179"
+      url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_darwin-amd64"
+      sha256 "261fd9655100afb32b039a97be73ec5e61ab2d15ef2e24201b993b0a7cfaf8e3"
     end
   end
 
   # The sources bundled with MemCastle (docs/adr/040): portable WebAssembly packages, unpacked one directory each, one
   # asset for every platform. Homebrew strips the archive's single top-level directory when it stages the resource.
   resource "sources" do
-    url "https://github.com/noirbizarre/memcastle/releases/download/#{version}/memcastle_#{version}_sources.tar.gz"
-    sha256 "b6781339a868c17279b9a04f15307426542ee6408f3f08afbab9138e4e04cd3f"
+    url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_sources.tar.gz"
+    sha256 "ca1e1858a12534e9e6bb766a6a2a29f1dfb989dd62126b18b17a11dcfe4080f0"
   end
 
   # The agent integrations and the shared skills they read (docs/adr/034): bundled JavaScript, one asset for every
   # platform, with `integrations/` and `skills/` under its single top-level directory.
   resource "integrations" do
-    url "https://github.com/noirbizarre/memcastle/releases/download/#{version}/memcastle_#{version}_integrations.tar.gz"
-    sha256 "95276b6e076bde9a7e0a7e3108b852ea70540a338ca2c0e6a7f5d434ac5240c0"
+    url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_integrations.tar.gz"
+    sha256 "f9bdc3607e097b7544660b9008a2a12a327c6164173e1c67f1bf561f44c64930"
   end
 
   # The web UI (docs/adr/035): static files, one asset for every platform, with `web/` under its single top-level
   # directory.
   resource "web" do
-    url "https://github.com/noirbizarre/memcastle/releases/download/#{version}/memcastle_#{version}_web.tar.gz"
-    sha256 "9a4d993963991e65f4e48a779284e6181b8e10666244c25e1877afa07e7df092"
+    url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_web.tar.gz"
+    sha256 "915d4ae38536990f4510c7fd31d5f51b52bf1e5232668d871f7a99d12d8adeda"
   end
 
   def install
