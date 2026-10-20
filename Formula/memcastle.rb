@@ -1,12 +1,12 @@
 # Homebrew formula template.
 #
-# `0.4.1` and the `@SHA256_*@` placeholders are substituted by
+# `0.5.0` and the `@SHA256_*@` placeholders are substituted by
 # .github/workflows/homebrew.yaml from the published release assets, and the
 # result is pushed to noirbizarre/homebrew-tap as Formula/memcastle.rb.
 class Memcastle < Formula
   desc "Local-first, always-on memory server for AI coding agents over MCP/HTTP"
   homepage "https://github.com/memcastle/memcastle"
-  version "0.4.1"
+  version "0.5.0"
   license "MIT"
 
   # The release asset is the raw executable itself, not an archive — this
@@ -18,11 +18,11 @@ class Memcastle < Formula
   on_macos do
     on_arm do
       url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_darwin-arm64"
-      sha256 "8afd67a2543bc11d85257b7a9b5124486bf7c637e220189f46f3f942db8e68bd"
+      sha256 "5facebd79e39707b6645abe6c2f8b2eb8abfb795f79e9b81714a9d1fe97a3d9c"
     end
     on_intel do
       url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_darwin-amd64"
-      sha256 "261fd9655100afb32b039a97be73ec5e61ab2d15ef2e24201b993b0a7cfaf8e3"
+      sha256 "eea4e8992371f3281bb5b186d6568caa8e965fbe738ccbcaf8434f0f6b821dd5"
     end
   end
 
@@ -30,21 +30,21 @@ class Memcastle < Formula
   # asset for every platform. Homebrew strips the archive's single top-level directory when it stages the resource.
   resource "sources" do
     url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_sources.tar.gz"
-    sha256 "ca1e1858a12534e9e6bb766a6a2a29f1dfb989dd62126b18b17a11dcfe4080f0"
+    sha256 "5dea902ca42106629dbc35399f7e408997f5bfddf18512426588682b2dbf2fa2"
   end
 
   # The agent integrations and the shared skills they read (docs/adr/034): bundled JavaScript, one asset for every
   # platform, with `integrations/` and `skills/` under its single top-level directory.
   resource "integrations" do
     url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_integrations.tar.gz"
-    sha256 "f9bdc3607e097b7544660b9008a2a12a327c6164173e1c67f1bf561f44c64930"
+    sha256 "000866c4e4513bcb0b91c9290a5c08b19a27a834d98abcd6acf7ad252a7bf79f"
   end
 
   # The web UI (docs/adr/035): static files, one asset for every platform, with `web/` under its single top-level
   # directory.
   resource "web" do
     url "https://github.com/memcastle/memcastle/releases/download/#{version}/memcastle_#{version}_web.tar.gz"
-    sha256 "915d4ae38536990f4510c7fd31d5f51b52bf1e5232668d871f7a99d12d8adeda"
+    sha256 "288b671a2f843cf52c45b4629ef0063731119bb41b1659bfbfed543a9960ffd7"
   end
 
   def install
