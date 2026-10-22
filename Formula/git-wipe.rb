@@ -1,54 +1,54 @@
 # Homebrew formula template.
 #
-# `0.5.0` and the `@SHA256_*@` placeholders are substituted by
-# .github/workflows/homebrew.yml from the published release assets, and the
+# `0.6.0` and the `@SHA256_*@` placeholders are substituted by
+# .github/workflows/homebrew.yaml from the published release assets, and the
 # result is pushed to noirbizarre/homebrew-tap as Formula/git-wipe.rb.
-#
-# The formula is named after the binary (`git-wipe`), not the crate, because
-# that is what `brew install noirbizarre/tap/git-wipe` has to spell.
 class GitWipe < Formula
   desc "Wipe out merged local branches and worktrees"
   homepage "https://github.com/noirbizarre/git-wipe"
-  version "0.5.0"
+  version "0.6.0"
   license "MIT"
 
-  # Prebuilt binaries from the GitHub release rather than a source build: the
-  # archives already carry the man pages and completions, and installing takes
-  # no Rust toolchain.
+  # The release archive, not the raw executable: it carries the man pages and
+  # completions the bare binary cannot. Homebrew strips the archive's single
+  # top-level directory, so the paths in `install` start at `bin/`.
+  #
+  # This project tags without a `v` prefix, so the tag is `#{version}` as-is.
   on_macos do
     on_arm do
-      url "https://github.com/noirbizarre/git-wipe/releases/download/v#{version}/git-wipe-aarch64-apple-darwin.tar.gz"
-      sha256 "10fb5bc196624368dff93ed05eb4de952ea61b77db600462cb3905621a4084b3"
+      url "https://github.com/noirbizarre/git-wipe/releases/download/#{version}/git-wipe_#{version}_darwin-arm64.tar.gz"
+      sha256 "fc4d0d2975aa21fe27f6e57f4f08333bed612679ed95456a6e4a37b8721d07a0"
     end
     on_intel do
-      url "https://github.com/noirbizarre/git-wipe/releases/download/v#{version}/git-wipe-x86_64-apple-darwin.tar.gz"
-      sha256 "1012901164cb93405aeb9816377d902c5e0aa7a6a872fb5ac7ef39e852801ae0"
+      url "https://github.com/noirbizarre/git-wipe/releases/download/#{version}/git-wipe_#{version}_darwin-amd64.tar.gz"
+      sha256 "8b47ea52601b72d29486fb0639e53a7a95c650f175e49b3e9bf2d0d382c71546"
     end
   end
 
-  # musl rather than gnu: the binaries are statically linked, so they run on
-  # any distribution Homebrew supports regardless of its glibc.
+  # musl rather than gnu: the binary is statically linked, so it runs on any
+  # distribution Homebrew supports regardless of its glibc.
   on_linux do
-    on_arm do
-      url "https://github.com/noirbizarre/git-wipe/releases/download/v#{version}/git-wipe-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "c2004d8e404efd3872e724986bc1dac28e1192562a4cf2d3404ef7f4c64b8a64"
-    end
     on_intel do
-      url "https://github.com/noirbizarre/git-wipe/releases/download/v#{version}/git-wipe-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "8022d9784edf0a2a05a578a6b9e8b661a04ce9ae55088c2b43608bec268c50f4"
+      url "https://github.com/noirbizarre/git-wipe/releases/download/#{version}/git-wipe_#{version}_linux-amd64-musl.tar.gz"
+      sha256 "0af87e4c4f04078faa84d50e263fb838049e4abcd6ba01f1283fe2c68b247c3c"
+    end
+    on_arm do
+      url "https://github.com/noirbizarre/git-wipe/releases/download/#{version}/git-wipe_#{version}_linux-arm64-musl.tar.gz"
+      sha256 "ddbf70f647dbd00b7ad2002918104907cfa14ebb5165181d3862eaa75629bef2"
     end
   end
 
+  # Every operation shells out to git.
   depends_on "git"
 
   def install
-    bin.install "git-wipe"
-    # Git rewrites `git wipe --help` into `git help wipe`, which runs
-    # `man git-wipe`: the pages are what makes that work.
-    man1.install Dir["man/*.1"]
-    bash_completion.install "completions/git-wipe.bash" => "git-wipe"
-    zsh_completion.install "completions/_git-wipe"
-    fish_completion.install "completions/git-wipe.fish"
+    bin.install "bin/git-wipe"
+
+    # Each is optional: the archive only carries what the project generates.
+    man1.install Dir["share/man/man1/*.1"] unless Dir["share/man/man1/*.1"].empty?
+    bash_completion.install "share/bash-completion/completions/git-wipe" if File.exist?("share/bash-completion/completions/git-wipe")
+    zsh_completion.install "share/zsh/site-functions/_git-wipe" if File.exist?("share/zsh/site-functions/_git-wipe")
+    fish_completion.install "share/fish/vendor_completions.d/git-wipe.fish" if File.exist?("share/fish/vendor_completions.d/git-wipe.fish")
   end
 
   test do
