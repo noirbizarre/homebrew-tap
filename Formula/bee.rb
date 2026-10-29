@@ -1,12 +1,12 @@
 # Homebrew formula template.
 #
-# `0.1.1` and the `@SHA256_*@` placeholders are substituted by
+# `0.2.0` and the `@SHA256_*@` placeholders are substituted by
 # .github/workflows/homebrew.yaml from the published release assets, and the
 # result is pushed to noirbizarre/homebrew-tap as Formula/bee.rb.
 class Bee < Formula
   desc "A minimal, headless Rust agent runtime implementing ACPv2."
   homepage "https://github.com/noirbizarre/bee"
-  version "0.1.1"
+  version "0.2.0"
   license "MIT"
 
   # The release asset is the raw executable itself, not an archive — this
@@ -18,11 +18,11 @@ class Bee < Formula
   on_macos do
     on_arm do
       url "https://github.com/noirbizarre/bee/releases/download/#{version}/bee_#{version}_darwin-arm64"
-      sha256 "1a08f7c15cfac052d9481143111691a5e408c3c428c2eb30fd0317d8d9adad89"
+      sha256 "1654d6eda53d1cb5b99dd8b9107aacf24e6c0b9b1a157b11c3cb6abb4580b722"
     end
     on_intel do
       url "https://github.com/noirbizarre/bee/releases/download/#{version}/bee_#{version}_darwin-amd64"
-      sha256 "2bcdf9f2a0d9a64ca501be8f64119a8b1c2122f249b8af9761f9d7afe6a537a2"
+      sha256 "4702cfad26ab2becca252815aaf5841fe9b4c384b7e954e7153e6c4babbd33d6"
     end
   end
 
@@ -31,7 +31,7 @@ class Bee < Formula
   on_linux do
     on_intel do
       url "https://github.com/noirbizarre/bee/releases/download/#{version}/bee_#{version}_linux-amd64-musl"
-      sha256 "7eb17a6438a5d2d3f0fc65e9bc8aa7fb0168bff2f8ee19c81c056f3a92101aac"
+      sha256 "94c7395eb5a0b6395b2bc8350a445067b2b95cd02e5849a5af4ddac2fcd5795c"
     end
   end
 
