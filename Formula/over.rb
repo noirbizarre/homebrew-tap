@@ -1,12 +1,12 @@
 # Homebrew formula template.
 #
-# `0.1.0` and the `@SHA256_*@` placeholders are substituted by
+# `0.2.0` and the `@SHA256_*@` placeholders are substituted by
 # .github/workflows/homebrew.yaml from the published release assets, and the
 # result is pushed to noirbizarre/homebrew-tap as Formula/over.rb.
 class Over < Formula
   desc "A git-based file overlay manager (dotfiles as overlays)"
   homepage "https://noirbizarre.github.io/over/"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
 
   # Prebuilt binaries from the GitHub release rather than a source build:
@@ -15,11 +15,11 @@ class Over < Formula
   on_macos do
     on_arm do
       url "https://github.com/noirbizarre/over/releases/download/#{version}/over_#{version}_darwin-arm64.tar.gz"
-      sha256 "397b2b79da5fd88fdfefd82f5b8672f34be479b532a2567d5b04c1588eda461e"
+      sha256 "f0b416290536849a02205394e2fb46cdd378f426735d0a6ef37a839fda0d0298"
     end
     on_intel do
       url "https://github.com/noirbizarre/over/releases/download/#{version}/over_#{version}_darwin-amd64.tar.gz"
-      sha256 "faf6f935f0d3fee9d51fc2f600232fa8725285bf8208f15bbdaa935f0ebaae2d"
+      sha256 "e8f8dc77f2c57f1525566b720252191bfbdacb87a8bf5079ec858b147a697f65"
     end
   end
 
@@ -31,7 +31,7 @@ class Over < Formula
   on_linux do
     on_intel do
       url "https://github.com/noirbizarre/over/releases/download/#{version}/over_#{version}_linux-amd64-musl.tar.gz"
-      sha256 "3f2521b95abe96c164808e8f8fe357968e2e7b90b468ca07c3db210433b6e697"
+      sha256 "008461eef6f144118eecfcad7038fdc69def8b3763d565a7f9e9199a39c9218b"
     end
   end
 
